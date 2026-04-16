@@ -41,12 +41,9 @@
     <link rel="manifest" href='data:application/manifest+json,{"name":"Med Basha Pro","short_name":"TMSA Pro","start_url":".","display":"standalone","background_color":"#0f172a","theme_color":"#0f172a","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/3448/3448339.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}'>
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                const swCode = "self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))));";
-                const blob = new Blob([swCode], {type: 'text/javascript'});
-                const swUrl = URL.createObjectURL(blob);
-                navigator.serviceWorker.register(swUrl)
-                    .then(reg => console.log('SW registrado', reg))
+           window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Instalación habilitada'))
                     .catch(err => console.log('Error SW', err));
             });
         }
